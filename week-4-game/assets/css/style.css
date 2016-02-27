@@ -1,0 +1,106 @@
+body {
+	height: 100%;
+}
+
+div img {
+	width: 200px;
+	float: left;
+	height: 120px;
+}
+
+div.good {
+	width: 200px;
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 100%;
+	border: solid 4px blue;
+}
+
+div.bad {
+	width: 200px;
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 100%;
+	border: solid 4px red;
+}
+
+/*  lightside styles  */
+
+.good div {
+	border: solid 5px blue;
+	margin: 0 auto;
+}
+
+.good div p {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#lightside div.good {
+	display: block;
+}
+
+/* darkside styles */
+
+.bad div {
+	border: solid 5px red;
+	margin: 0 auto;
+}
+
+.bad div p {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+/*  sidious styles  */
+
+/*#sidious-stats {
+	float: left;
+	height: 120px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 120px;
+	border: solid 2px blue;
+}
+
+#sidious-stats p {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+  stormtrooper styles  
+
+#sidious-stats {
+	float: left;
+	height: 120px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 120px;
+	border: solid 2px blue;
+}
+
+#sidious-stats p {
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;*/
+}
+
+
+
