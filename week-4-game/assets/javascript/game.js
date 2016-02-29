@@ -2,29 +2,29 @@ $( document ).ready(function() {
 	
 	var obi_wan = {
 				name: 'obi-wan',
-				healthpoints : 20,
-				attackpower : 5,
-				counterattack : 10,
+				healthpoints : 70,
+				attackpower : 6,
+				counterattack : 20,
 			};  
 	
 	var maul = {
 				name: 'maul',
-				healthpoints : 20,
-				attackpower : 5,
-				counterattack : 10,
+				healthpoints : 120,
+				attackpower : 20,
+				counterattack : 5,
 			};
 	
 	var sidious = {
 				name: 'sidious',
-				healthpoints : 20,
-				attackpower : 5,
-				counterattack : 10,
+				healthpoints : 200,
+				attackpower : 15,
+				counterattack : 7,
 			};
 	
 	var stormtrooper = {
 				name: 'stormtrooper',
-				healthpoints : 20,
-				attackpower : 5,
+				healthpoints : 160,
+				attackpower : 190,
 				counterattack : 10,
 			};
 
@@ -39,7 +39,7 @@ $( document ).ready(function() {
 	}
 
 
-	$('.good, .bad').one('click', function() {
+	$('.good, .bad').one('click', function() { //choosing your player1
 		// debugger;
 		var chosen = $(this);
 		var indexOfChosen = chosen.data('char'); /// this is the index value of chosen 
@@ -77,10 +77,14 @@ $( document ).ready(function() {
 		// debugger;
 		$('.good, .bad').off('click');
 		
-		if (characters[$('.player1').data('char')].healthpoints != 0) {
-			$('.bad').on('click', function(){
+		if (characters[$('.player1').data('char')].healthpoints !== 0) {
+			$('.bad').one('click', function(){
 			 	opponent = $(this)
 			 	opponent.addClass('opponent')
+			 	$('.bad').addClass('hold')
+			 	$('.hold').removeClass('bad')
+			 	opponent.addClass('bad')
+			 	opponent.removeClass('hold')
 				$('.attack').hover(function(){
 				 	$(this).css('background-color', 'yellow').css('color', '#444')
 				}, function() {
@@ -89,7 +93,7 @@ $( document ).ready(function() {
 
 				var enemy = $('<div class=enemy>').text('enemy');
 				opponent.append(enemy)
-				// $('.bad').off('click');
+				$('.bad').off('click');
 		
 			});
 
@@ -101,16 +105,21 @@ $( document ).ready(function() {
 
 					enemyHealth = enemyHealth - characters[$('.player1').data('char')].attackpower;
 					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth);
-				if (enemyHealth == 0) {
-					// debugger;
-					$('#'+characters[$('.opponent').data('char')].name).empty();
-					$('#'+characters[$('.opponent').data('char')].name).removeClass('bad opponent')
-				}
-				
+					player1Health = player1Health - characters[$('.opponent').data('char')].counterattack;
+					$('#'+characters[$('.player1').data('char')].name+'-health-points').text(player1Health)
+				if (enemyHealth < 0) {
+					debugger;
+					// $('#'+characters[$('.opponent').data('char')].name).empty();
+					$('#'+characters[$('.opponent').data('char')].name).addClass('defeated');
+					$('.defeated').children('img').attr('src', 'assets/images/dead.jpg');
+					$('#'+characters[$('.opponent').data('char')].name+'-health-points').text('-DEAD-').css('color', 'red')
+					$('#'+characters[$('.opponent').data('char')].name).removeClass('bad opponent');
+					$('.hold').addClass('bad');
+					$('.bad').removeClass('hold');
+				};				
 			});
-		};
-		
 
+		};
 	});
 	 
 	// && characters[$('.opponent').data('char')].healthpoints != 0
