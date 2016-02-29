@@ -16,14 +16,14 @@ $( document ).ready(function() {
 	
 	var sidious = {
 				name: 'sidious',
-				healthpoints : 200,
+				healthpoints : 2000,
 				attackpower : 15,
 				counterattack : 7,
 			};
 	
 	var stormtrooper = {
 				name: 'stormtrooper',
-				healthpoints : 160,
+				healthpoints : 1600,
 				attackpower : 190,
 				counterattack : 10,
 			};
@@ -31,12 +31,30 @@ $( document ).ready(function() {
 	var characters = [obi_wan, maul, sidious, stormtrooper];
 
 	for (i = 0; i < characters.length; i++) {
+		// debugger;
 		$('#'+characters[i].name+'-health-points').text(characters[i].healthpoints);
 		$('#'+characters[i].name+'-attack-power').text(characters[i].attackpower);
 		$('#'+characters[i].name+'-counter-attack-power').text(characters[i].counterattack);
 		
 		console.log();
 	}
+	$('#battle p').text('Select your player to begin!').css({
+		color: 'yellow',
+		'text-align': 'center',
+		'font-size': '36px',
+		'font-family': 'starwars'
+
+	});
+	
+
+
+	// $(function () {
+	//     setInterval(function () {
+	//         $('#battle p').fadeIn(500).delay(0).fadeOut(500).delay(0).fadeIn(500);
+	//     }, 100);
+
+	// });
+
 
 
 	$('.good, .bad').one('click', function() { //choosing your player1
@@ -56,10 +74,8 @@ $( document ).ready(function() {
 				$('.bad').css('float', 'right');
 				chosen.css('float', 'left');
 			}
-		var button = $('<div class=attack>').text('attack');
+		var button = $('<div class=attack>').text('Player1');
 		chosen.append(button)
-
-
 				
 		} else if (chosen.hasClass('bad')) {
 			for (i = 0; i < characters.length; i++) {
@@ -70,13 +86,19 @@ $( document ).ready(function() {
 				$('.good').css('float', 'right');
 				chosen.css('float', 'left');
 			}
-		var button = $('<div class=attack>').text('attack');
+		$('<div class=attack>').text('Press to Attack');
 		chosen.append(button)
+		$(function () {
+		    setInterval(function () {
+		        $('<div class=attack>').fadeIn(500).delay(0).fadeOut(500).delay(0).fadeIn(500);
+		    }, 100);
+
+		});
 		// button.text('attack');
 		}
 		// debugger;
 		$('.good, .bad').off('click');
-		
+		$('#battle p').text('Select your opponent!').css('color', 'red');
 		if (characters[$('.player1').data('char')].healthpoints !== 0) {
 			$('.bad').one('click', function(){
 			 	opponent = $(this)
@@ -85,38 +107,51 @@ $( document ).ready(function() {
 			 	$('.hold').removeClass('bad')
 			 	opponent.addClass('bad')
 			 	opponent.removeClass('hold')
+			 	$('.attack').text('Press to Attack!');
 				$('.attack').hover(function(){
-				 	$(this).css('background-color', 'yellow').css('color', '#444')
+				 	$(this).css('background-color', 'yellow').css('color', '#444');
 				}, function() {
 				 	$(this).css('background-color', '#444').css('color', 'yellow')
 				});
 
 				var enemy = $('<div class=enemy>').text('enemy');
 				opponent.append(enemy)
+				$('#battle p').text('Fight!');
 				$('.bad').off('click');
 		
 			});
-
+			
 			$('.attack').on('click', function(){
+				
 
 					// debugger;
-					player1Health = $('#'+characters[$('.player1').data('char')].name+'-health-points').text()
-					enemyHealth = $('#'+characters[$('.opponent').data('char')].name+'-health-points').text()
-
-					enemyHealth = enemyHealth - characters[$('.player1').data('char')].attackpower;
-					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth);
-					player1Health = player1Health - characters[$('.opponent').data('char')].counterattack;
-					$('#'+characters[$('.player1').data('char')].name+'-health-points').text(player1Health)
+					
+					indexOfPlayer = $('.player1').data('char');
+					indexOfOpponent = opponent.data('char');
+					player1Health = $('#'+characters[indexOfPlayer].name+'-health-points').text()
+					enemyHealth = $('#'+characters[indexOfOpponent].name+'-health-points').text()
+					
+					enemyHealth = enemyHealth - characters[indexOfPlayer].attackpower;
+					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth).css('color', 'red');
+					// $('<p class= announce>').text(characters[indexOfPlayer].name)
+					$('#battle').append($('<p id= announce>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+characters[indexOfPlayer].attackpower+' points!'));
+					player1Health = player1Health - characters[indexOfOpponent].counterattack;
+					$('#'+characters[indexOfPlayer].name+'-health-points').text(player1Health);
+					
 				if (enemyHealth < 0) {
-					debugger;
+					// debugger;
 					// $('#'+characters[$('.opponent').data('char')].name).empty();
 					$('#'+characters[$('.opponent').data('char')].name).addClass('defeated');
 					$('.defeated').children('img').attr('src', 'assets/images/dead.jpg');
-					$('#'+characters[$('.opponent').data('char')].name+'-health-points').text('-DEAD-').css('color', 'red')
-					$('#'+characters[$('.opponent').data('char')].name).removeClass('bad opponent');
+					$('#'+characters[indexOfOpponent].name+'-health-points').text('-DEAD-').css('color', 'red')
+					$('#'+characters[indexOfOpponent].name).removeClass('bad opponent');
 					$('.hold').addClass('bad');
 					$('.bad').removeClass('hold');
 				};				
+			});
+			
+			$(function () {
+				$('#announce').fadeOut(500);
 			});
 
 		};
