@@ -1,5 +1,59 @@
 body {
 	height: 100%;
+	background-color: black;
+	background-size: cover;
+}
+
+#arena {
+	border: solid 4px yellow;
+	display: block;
+    position: relative;
+    overflow: hidden;	
+}
+
+#battle {
+	height: 100px;
+	border: solid 2px green;
+	color: darkgray;
+	float: left;
+	display: inline-block;
+	width: 350px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+	height: 344px;
+	background-color: #111111;
+}
+
+div.attack {
+	font-family: starwars;
+	color: yellow;
+	text-align: center;
+	font-size: 14pt;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #444444;
+}
+div.enemy {
+	font-family: starwars;
+	color: darkred;
+	text-align: center;
+	font-size: 14pt;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #444444;
+}
+
+.nameplate {
+	font-family: starwars;
+	color: yellow;
+	text-align: center;
+	font-size: 18pt;
+	height: 40px;
+} 
+.nameplate:hover {
+	color: orange;
 }
 
 div img {
@@ -11,31 +65,32 @@ div img {
 div.good {
 	width: 200px;
 	float: left;
+	display: inline-block;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 2px;
+	margin-right: 2px;
 	height: 100%;
-	border: solid 4px blue;
+	border: solid 4px blue; 
+	clear: none;
+	overflow: hidden;
+	background-color: gray;
 }
 
 div.bad {
 	width: 200px;
-	float: left;
+	float: right;
+	display: inline-block;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 2px;
+	margin-right: 2px;
 	height: 100%;
 	border: solid 4px red;
+	background-color: gray;
 }
 
 /*  lightside styles  */
-
-.good div {
-	border: solid 5px blue;
-	margin: 0 auto;
-}
 
 .good div p {
 	text-align: center;
@@ -43,18 +98,16 @@ div.bad {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
+	font-family: 'BenchNine', sans-serif;
+	color: lightgreen;
+
 }
 
-#lightside div.good {
+/*#lightside div.good {
 	display: block;
-}
+}*/
 
 /* darkside styles */
-
-.bad div {
-	border: solid 5px red;
-	margin: 0 auto;
-}
 
 .bad div p {
 	text-align: center;
@@ -62,6 +115,14 @@ div.bad {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
+	font-family: 'BenchNine', sans-serif;
+	color: purple;
+}
+
+.opponent {
+	border: solid 4px darkred !important;
+	margin-right: 40px !important;
+	float: left !important;
 }
 
 /*  sidious styles  */

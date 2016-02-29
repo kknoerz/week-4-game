@@ -3,11 +3,13 @@
 <head>
 	<script src="assets/jQuery/jquery-1.12.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=BenchNine:400,300' rel='stylesheet' type='text/css'>
 	<title>Star Wars Fight Night!</title>
 </head>
-<body>
-	<div id="lightside">
-		<div class='good' id="skywalker" data-char='0'>
+<body background="assets/Images/warpedspeed.jpg">
+	<div id="arena">
+		<!-- <div class='good' id="skywalker" data-char='0'>
+			<p class="nameplate">Luke Skywalker</p>
 			<img src="assets/images/luke-skywalker.jpg">	
 			<div id="skywalker-stats">
 				<p>Health Points</p>
@@ -16,9 +18,11 @@
 				<p id="skywalker-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="skywalker-counter-attack-power">X</p>
+				<p id="skywalker-attack-button"></p>
 			</div>
-		</div>
-		<div class='good' id="obi-wan">
+		</div> -->
+		<div class='good' id="obi-wan" data-char='0'>
+			<p class="nameplate">Obi-wan Kenobi</p>
 			<img src="assets/images/obi-wan.jpg">
 			<div id="obi-wan-stats">
 				<p>Health Points</p>
@@ -27,9 +31,11 @@
 				<p id="obi-wan-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="obi-wan-counter-attack-power">X</p>
+				<p id="obi-wan-attack-button"></p>
 			</div>
 		</div>
-		<div class='good' id="xwing">
+		<!-- <div class='good' id="xwing" data-char='2'>
+			<p class="nameplate">X-Wing</p>
 			<img src="assets/images/star_wars_xwing.jpg">
 			<div id="xwing-stats">
 				<p>Health Points</p>
@@ -38,11 +44,11 @@
 				<p id="xwing-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="xwing-counter-attack-power">X</p>
+				<p id="xwing-attack-button"></p>
 			</div>
-		</div>
-	</div>
-	<div id="darkside">
-		<div class='bad' id="maul">
+		</div> -->
+		<div class='bad' id="maul" data-char='1'>
+			<p class="nameplate">Darth Maul</p>
 			<img src="assets/images/darth-maul.jpg">
 			<div id="maul-stats">
 				<p>Health Points</p>
@@ -51,9 +57,11 @@
 				<p id="maul-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="maul-counter-attack-power">X</p>
+				<p id="maul-attack-button"></p>
 			</div>
 		</div>
-		<div class='bad' id="sidious">
+		<div class='bad' id="sidious" data-char='2'>
+			<p class="nameplate">Darth Sidious</p>
 			<img src="assets/images/darth-sidious.png">
 			<div id="sidious-stats">
 				<p>Health Points</p>
@@ -62,9 +70,11 @@
 				<p id="sidious-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="sidious-counter-attack-power">X</p>
+				<p id="sidious-attack-button"></p>
 			</div>
 		</div>
-		<div class='bad' id="stormtrooper">
+		<div class='good' id="stormtrooper" data-char='3'>
+			<p class="nameplate">Joe Stormtrooper</p>
 			<img src="assets/images/star_wars_stormtroopers_suit.jpg">
 			<div id="stormtrooper-stats">
 				<p id="stormtrooper">Health Points</p>
@@ -73,9 +83,15 @@
 				<p id="stormtrooper-attack-power">X</p>
 				<p>Counter-Attack Power</p>
 				<p id="stormtrooper-counter-attack-power">X</p>
+				<p id="stormtrooper-attack-button"></p>
 			</div>
 		</div>
+		<div id="battle">
+			<p>You hit <span id='enemy'>X</span> for <span id='attack'>X</span> points!</p>
+
+		</div>
 	</div>
+
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>

@@ -1,62 +1,153 @@
-$( document ).ready(function() {
-
-	var skywalker = {
-				name: 'skywalker',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}  
+$( document ).ready(function() { 
 	
 	var obi_wan = {
 				name: 'obi-wan',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}  
-
-	
-	var xwing = {
-				name: 'xwing',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}
+				healthpoints : 20,
+				attackpower : 5,
+				counterattack : 10,
+			};  
 	
 	var maul = {
 				name: 'maul',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}
+				healthpoints : 20,
+				attackpower : 5,
+				counterattack : 10,
+			};
 	
 	var sidious = {
 				name: 'sidious',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}
+				healthpoints : 20,
+				attackpower : 5,
+				counterattack : 10,
+			};
 	
 	var stormtrooper = {
 				name: 'stormtrooper',
-				hp : 20,
-				ap : 5,
-				ca : 10,
-				bt : $('<button>')
-			}
+				healthpoints : 20,
+				attackpower : 5,
+				counterattack : 10,
+			};
 
-	var characters = [skywalker, obi_wan, xwing, maul, sidious, stormtrooper]
+	var characters = [obi_wan, maul, sidious, stormtrooper];
 
 	for (i = 0; i < characters.length; i++) {
-		$('#'+characters[i].name+'-health-points').text(characters[i].hp)
-		$('#'+characters[i].name+'-attack-power').text(characters[i].ap)
-		$('#'+characters[i].name+'-counter-attack-power').text(characters[i].ca)
-		console.log()
+		$('#'+characters[i].name+'-health-points').text(characters[i].healthpoints);
+		$('#'+characters[i].name+'-attack-power').text(characters[i].attackpower);
+		$('#'+characters[i].name+'-counter-attack-power').text(characters[i].counterattack);
+		
+		console.log();
 	}
+
+
+	$('.good, .bad').one('click', function() {
+		// debugger;
+		var chosen = $(this);
+		var indexOfChosen = chosen.data('char'); /// this is the index value of chosen 
+		console.log(characters[indexOfChosen]);
+
+		if (chosen.hasClass('good')) {
+			// debugger;
+			for (i = 0; i < characters.length; i++) {
+				$('#'+characters[i].name).removeClass('good');
+				$('#'+characters[i].name).addClass('bad');
+				// $('.bad').css('clear','both')
+				chosen.removeClass('bad');
+				chosen.addClass('good player1');
+				$('.bad').css('float', 'right');
+				chosen.css('float', 'left');
+			}
+		var button = $('<div class=attack>').text('attack');
+		chosen.append(button)
+
+
+				
+		} else if (chosen.hasClass('bad')) {
+			for (i = 0; i < characters.length; i++) {
+				$('#'+characters[i].name).removeClass('good');
+				$('#'+characters[i].name).addClass('bad');
+				chosen.removeClass('bad');
+				chosen.addClass('good player1');
+				$('.good').css('float', 'right');
+				chosen.css('float', 'left');
+			}
+		var button = $('<div class=attack>').text('attack');
+		chosen.append(button)
+		// button.text('attack');
+		}
+		// debugger;
+		$('.good, .bad').off('click');
+		$('.bad').one('click', function(){
+		 	opponent = $(this)
+		 	opponent.addClass('opponent')
+			$('.attack').hover(function(){
+			 	$(this).css('background-color', 'yellow').css('color', '#444')
+			}, function() {
+			 	$(this).css('background-color', '#444').css('color', 'yellow')
+			});
+
+			var enemy = $('<div class=enemy>').text('enemy');
+			opponent.append(enemy)
+			$('.bad').off('click');
+		
+		});
+		
+		if (characters[$('.player1').data('char')].healthpoints != 0) {
+
+			$('.attack').on('click', function(){
+					// debugger;
+					player1Health = $('#'+characters[$('.player1').data('char')].name+'-health-points').text()
+					enemyHealth = $('#'+characters[$('.opponent').data('char')].name+'-health-points').text()
+
+					enemyHealth = enemyHealth - characters[$('.player1').data('char')].attackpower;
+					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth);
+			});
+		};
+		
+
+	});
+	 
+	// && characters[$('.opponent').data('char')].healthpoints != 0
+
+}); // *********************jQuery closing tag do not delete (again)
+
+
+
+	
+	
+
+	
+	// button.text('attack');
+
+	// $('.bad').one('click', function(){
+	// 	var opponent = $(this)
+	// 	debugger;
+		// chosen.css('clear', 'both');
+		// opponent.css('clear', 'both');
+	
+	// });
+
+	 
+
+
+
+
+
+
+
+	// $('.bad').on('click', function(){
+	// 	// debugger;
+	// 	var chosen = $(this);
+	// 	var indexOfChosen = chosen.data('char')
+	// 	console.log(characters[indexOfChosen]);
+	// 	$(this).css('border-color', 'yellow');
+	// });
+
+	
+
+
+
+
+// });
 
 
 
@@ -117,33 +208,6 @@ $( document ).ready(function() {
 	// $('#stormtrooper-counter-attack-power').text(st_ca);
 	// st_bt.text('attack');
 	// $('#stormtrooper-stats').append(st_bt);
-
-	$('.good').hover(
-		function() {
-		$(this).css('border-color', 'lightblue') 
-	},
-		function() {
-		$(this).css('border-color', 'blue');
-	});
-
-	$('.bad').hover(
-		function() {
-		$(this).css('border-color', 'darkred') 
-	},
-		function() {
-		$(this).css('border-color', 'red');
-	});
-
-	$('.good').on('click', function(){
-		debugger;
-		var chosen = $(this);
-		var option = chosen.data('char')
-		console.log(character[option]);
-		$(this).css('border-color', 'yellow');
-	});
-
-});
-
 
 
 
