@@ -136,28 +136,29 @@ $( document ).ready(function() {
 			});
 			
 			$('.attack').on('click', function(){
-				
 
-					// debugger;
-					
+					debugger;
 					indexOfPlayer = $('.player1').data('char');
 					indexOfOpponent = opponent.data('char');
-					player1Health = $('#'+characters[indexOfPlayer].name+'-health-points').text()
-					enemyHealth = $('#'+characters[indexOfOpponent].name+'-health-points').text()
-					enemyHealth = enemyHealth - characters[indexOfPlayer].attackpower;
-					debugger;
+
 					var baseAttack = $('#'+characters[indexOfPlayer].name+'-attack-power').text()
 					
 					// characters[indexOfPlayer].attackpower = characters[indexOfPlayer].attackpower + baseAttack;
 					var higherAttack = parseInt(baseAttack) + characters[indexOfPlayer].attackpower;
 					$('#'+characters[indexOfPlayer].name+'-attack-power').text(higherAttack).css('color', '#ff9900');
 					
+					player1Health = $('#'+characters[indexOfPlayer].name+'-health-points').text()
+					enemyHealth = $('#'+characters[indexOfOpponent].name+'-health-points').text()
+					enemyHealth = enemyHealth - higherAttack;
+					
+					
+					$('#battle').append('<div id=battleStats>')
 
 					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth).css('color', '#990033');
-					$('#battle p').prepend($('<div id= youHit>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+higherAttack+' points!'));
+					$('#battleStats').append($('<div id= youHit>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+higherAttack+' points!'));
 					player1Health = player1Health - characters[indexOfOpponent].counterattack;
 					$('#'+characters[indexOfPlayer].name+'-health-points').text(player1Health).css('color', '#006600');
-					$('#battle p').prepend($('<div id= gotHit>').text(characters[indexOfOpponent].name+' just hit '+characters[indexOfPlayer].name+' for '+characters[indexOfOpponent].attackpower+' points!'));
+					$('#battleStats').append($('<div id= gotHit>').text(characters[indexOfOpponent].name+' just hit '+characters[indexOfPlayer].name+' for '+characters[indexOfOpponent].attackpower+' points!'));
 					// debugger;
 					$('#youHit, #gotHit').animate(
 						{backgroundPositionY:"+=500px"}, 
