@@ -19,18 +19,26 @@ body {
 	width: 394px;
     display: block;
     float: left;
-	margin-top: 20px;
+    margin-top: 20px;
 	margin-bottom: 20px;
 	margin-left: 2px;
 	margin-right: 2px;
-	height: 344px;
+	height: 308px;
 	background-color: #111111;
-	perspective: 480px;
+	perspective: 375px;
 	z-index: 2;
+
 }
 
 #battle p {
-	transform: rotateX(45deg);
+	transform: rotateX(50deg);
+	width: 394px;
+	max-height: 308px;
+}
+
+@keyframes bgscroll {
+  0% { background-position: 0 0; }
+  100% { background-position: -394px 0 0 0; /* 1500px = width of image */ }
 }
 
 #youHit {
@@ -39,10 +47,9 @@ body {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
+	font-family: 'VT323';
 	color: green;
 	font-size: 18px;
-	transform: rotateX(45deg);
 }
 
 #gotHit {
@@ -51,7 +58,7 @@ body {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
+	font-family: 'VT323';
 	color: purple;
 	font-size: 18px;
 	transform: rotateX(45deg);
@@ -78,6 +85,7 @@ div.enemy {
 
 .nameplate {
 	font-family: starwars;
+	font-style: outline;
 	color: yellow;
 	text-align: center;
 	font-size: 18pt;
@@ -129,7 +137,7 @@ div.bad {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
+	font-family: 'VT323';
 	color: lightgreen;
 
 }
@@ -146,8 +154,8 @@ div.bad {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
-	color: purple;
+	font-family: 'VT323';
+	color: #ff0066;
 }
 
 .opponent {
@@ -175,7 +183,7 @@ div.bad {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
+	font-family: 'VT323';
 	color: lightgray;
 }
 
@@ -190,7 +198,8 @@ div.hold p.nameplate {
 .defeated {
 	width: 200px;
 	float: right;
-	display: inline-block;
+	display: inline-block;				 	
+
 	margin-top: 20px;
 	margin-bottom: 20px;
 	margin-left: 2px;
@@ -206,12 +215,12 @@ div.hold p.nameplate {
 	margin-bottom: 0px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-family: 'BenchNine', sans-serif;
+	font-family: 'VT323';
 	color: lightgray;
 }
 
 div.defeated img {
-	opacity: 0.1;
+	opacity: 0.3;
 }
 
 div.defeated p.nameplate {

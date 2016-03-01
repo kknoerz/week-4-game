@@ -3,28 +3,28 @@ $( document ).ready(function() {
 	var obi_wan = {
 				name: 'obi-wan',
 				healthpoints : 180,
-				attackpower : 12,
+				attackpower : 7,
 				counterattack : 20,
 			};  
 	
 	var maul = {
 				name: 'maul',
 				healthpoints : 120,
-				attackpower : 30,
+				attackpower : 9,
 				counterattack : 5,
 			};
 	
 	var sidious = {
 				name: 'sidious',
 				healthpoints : 200,
-				attackpower : 15,
+				attackpower : 4,
 				counterattack : 7,
 			};
 	
 	var stormtrooper = {
 				name: 'stormtrooper',
 				healthpoints : 160,
-				attackpower : 18,
+				attackpower : 8,
 				counterattack : 10,
 			};
 
@@ -38,11 +38,26 @@ $( document ).ready(function() {
 		
 		console.log();
 	}
+
+	// function( {
+	// 	$('#battle p').text('A long time ago in a galaxy far, far, away...').css({
+	// 	color: 'yellow',
+	// 	'text-align': 'center',
+	// 	'font-size': '36px',
+	// 	'font-family': 'starwars'
+
+	// });
+	// )};
+	 
+
+
+
 	$('#battle p').text('Select your player to begin!').css({
 		color: 'yellow',
 		'text-align': 'center',
 		'font-size': '36px',
-		'font-family': 'starwars'
+		'font-family': 'sf distant galaxy outline',
+		'font-style': 'outline'
 
 	});
 	
@@ -86,21 +101,21 @@ $( document ).ready(function() {
 				$('.good').css('float', 'right');
 				chosen.css('float', 'left');
 			}
-		$('<div class=attack>').text('Press to Attack');
+		var button = $('<div class=attack>').text('Press to Attack');
 		chosen.append(button)
-		$(function () {
-		    setInterval(function () {
-		        $('<div class=attack>').fadeIn(500).delay(0).fadeOut(500).delay(0).fadeIn(500);
-		    }, 100);
+		// $(function () {
+		//     setInterval(function () {
+		//         $('<div class=attack>').fadeIn(500).delay(0).fadeOut(500).delay(0).fadeIn(500);
+		//     }, 100);
 
-		});
+		// });
 		// button.text('attack');
 		}
 		// debugger;
 		$('.good, .bad').off('click');
 		$('#battle p').text('Select your opponent!').css('color', 'red');
 		if (characters[$('.player1').data('char')].healthpoints !== 0) {
-			$('.bad').one('click', function(){
+			$('.bad').on('click', function(){
 			 	opponent = $(this)
 			 	opponent.addClass('opponent')
 			 	$('.bad').addClass('hold')
@@ -109,7 +124,6 @@ $( document ).ready(function() {
 			 	opponent.removeClass('hold')
 			 	$('.attack').text('Press to Attack!');
 				$('.attack').hover(function(){
-				 	$(this).css('background-color', 'yellow').css('color', '#444');
 				}, function() {
 				 	$(this).css('background-color', '#444').css('color', 'yellow')
 				});
@@ -124,23 +138,35 @@ $( document ).ready(function() {
 			$('.attack').on('click', function(){
 				
 
-					debugger;
+					// debugger;
 					
 					indexOfPlayer = $('.player1').data('char');
 					indexOfOpponent = opponent.data('char');
 					player1Health = $('#'+characters[indexOfPlayer].name+'-health-points').text()
 					enemyHealth = $('#'+characters[indexOfOpponent].name+'-health-points').text()
-					
 					enemyHealth = enemyHealth - characters[indexOfPlayer].attackpower;
-					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth).css('color', 'red');
-					// $('<p class= announce>').text(characters[indexOfPlayer].name)
-					$('#battle').append($('<div id= youHit>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+characters[indexOfPlayer].attackpower+' points!'));
+					debugger;
+					var baseAttack = $('#'+characters[indexOfPlayer].name+'-attack-power').text()
+					
+					// characters[indexOfPlayer].attackpower = characters[indexOfPlayer].attackpower + baseAttack;
+					var higherAttack = parseInt(baseAttack) + characters[indexOfPlayer].attackpower;
+					$('#'+characters[indexOfPlayer].name+'-attack-power').text(higherAttack).css('color', '#ff9900');
+					
+
+					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth).css('color', '#990033');
+					$('#battle p').prepend($('<div id= youHit>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+higherAttack+' points!'));
 					player1Health = player1Health - characters[indexOfOpponent].counterattack;
-					$('#'+characters[indexOfPlayer].name+'-health-points').text(player1Health);
-					$('#battle').append($('<div id= gotHit>').text(characters[indexOfOpponent].name+' just hit '+characters[indexOfPlayer].name+' for '+characters[indexOfOpponent].attackpower+' points!'));
-					characters[indexOfPlayer].attackpower = characters[indexOfPlayer].attackpower * 2;
-					$('#'+characters[indexOfPlayer].name+'-attack-points').text(characters[indexOfPlayer].attackpower);
-					$('#'+characters[indexOfOpponent].name+'-attack-points').text(characters[indexOfOpponent].attackpower);
+					$('#'+characters[indexOfPlayer].name+'-health-points').text(player1Health).css('color', '#006600');
+					$('#battle p').prepend($('<div id= gotHit>').text(characters[indexOfOpponent].name+' just hit '+characters[indexOfPlayer].name+' for '+characters[indexOfOpponent].attackpower+' points!'));
+					// debugger;
+					$('#youHit, #gotHit').animate(
+						{backgroundPositionY:"+=500px"}, 
+						700, 
+						"swing"
+					);
+					// debugger;
+					
+					// $('#'+characters[indexOfOpponent].name+'-attack-points').text(characters[indexOfOpponent].attackpower);
 					
 				if (enemyHealth < 0) {
 					// debugger;
@@ -151,9 +177,9 @@ $( document ).ready(function() {
 					$('#'+characters[indexOfOpponent].name).removeClass('bad opponent');
 					$('.hold').addClass('bad');
 					$('.bad').removeClass('hold');
-				};				
+				};
+
 			});
-			
 			$(function () {
 				$('#youHit').fadeOut(500);
 			});
