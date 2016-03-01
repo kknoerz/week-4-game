@@ -27,6 +27,7 @@ body {
 	background-color: #111111;
 	perspective: 375px;
 	z-index: 2;
+	overflow: auto;
 
 }
 
