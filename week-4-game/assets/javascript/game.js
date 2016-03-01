@@ -2,29 +2,29 @@ $( document ).ready(function() {
 	
 	var obi_wan = {
 				name: 'obi-wan',
-				healthpoints : 70,
-				attackpower : 6,
+				healthpoints : 180,
+				attackpower : 12,
 				counterattack : 20,
 			};  
 	
 	var maul = {
 				name: 'maul',
 				healthpoints : 120,
-				attackpower : 20,
+				attackpower : 30,
 				counterattack : 5,
 			};
 	
 	var sidious = {
 				name: 'sidious',
-				healthpoints : 2000,
+				healthpoints : 200,
 				attackpower : 15,
 				counterattack : 7,
 			};
 	
 	var stormtrooper = {
 				name: 'stormtrooper',
-				healthpoints : 1600,
-				attackpower : 190,
+				healthpoints : 160,
+				attackpower : 18,
 				counterattack : 10,
 			};
 
@@ -124,7 +124,7 @@ $( document ).ready(function() {
 			$('.attack').on('click', function(){
 				
 
-					// debugger;
+					debugger;
 					
 					indexOfPlayer = $('.player1').data('char');
 					indexOfOpponent = opponent.data('char');
@@ -134,9 +134,13 @@ $( document ).ready(function() {
 					enemyHealth = enemyHealth - characters[indexOfPlayer].attackpower;
 					$('#'+characters[opponent.data('char')].name+'-health-points').text(enemyHealth).css('color', 'red');
 					// $('<p class= announce>').text(characters[indexOfPlayer].name)
-					$('#battle').append($('<p id= announce>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+characters[indexOfPlayer].attackpower+' points!'));
+					$('#battle').append($('<div id= youHit>').text(characters[indexOfPlayer].name+' just hit '+characters[indexOfOpponent].name+' for '+characters[indexOfPlayer].attackpower+' points!'));
 					player1Health = player1Health - characters[indexOfOpponent].counterattack;
 					$('#'+characters[indexOfPlayer].name+'-health-points').text(player1Health);
+					$('#battle').append($('<div id= gotHit>').text(characters[indexOfOpponent].name+' just hit '+characters[indexOfPlayer].name+' for '+characters[indexOfOpponent].attackpower+' points!'));
+					characters[indexOfPlayer].attackpower = characters[indexOfPlayer].attackpower * 2;
+					$('#'+characters[indexOfPlayer].name+'-attack-points').text(characters[indexOfPlayer].attackpower);
+					$('#'+characters[indexOfOpponent].name+'-attack-points').text(characters[indexOfOpponent].attackpower);
 					
 				if (enemyHealth < 0) {
 					// debugger;
@@ -151,7 +155,7 @@ $( document ).ready(function() {
 			});
 			
 			$(function () {
-				$('#announce').fadeOut(500);
+				$('#youHit').fadeOut(500);
 			});
 
 		};
