@@ -173,7 +173,7 @@ $( document ).ready(function() {
 					// debugger;
 					// $('#'+characters[$('.opponent').data('char')].name).empty();
 					$('#'+characters[$('.opponent').data('char')].name).addClass('defeated');
-					$('.defeated').children('img').attr('src', 'assets/images/dead.jpg');
+					$('.defeated').children('img').attr('src', 'assets/Images/dead.jpg');
 					$('#'+characters[indexOfOpponent].name+'-health-points').text('-DEAD-').css('color', 'red')
 					$('#'+characters[indexOfOpponent].name).removeClass('bad opponent');
 					$('.hold').addClass('bad');
